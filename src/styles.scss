@@ -1,1 +1,67 @@
-/* You can add global styles to this file, and also import other style files */
+$text: #222;
+$primary: #855f3d;
+$link: $primary;
+$link-hover: #000;
+$link-active: $link-hover;
+$body-family: "Duru Sans", sans-serif;
+$body-size: 14px;
+$body-background-color: #ecebcf;
+$content-background-color: rgba(223, 217, 169, 0.6);
+$footer-background-color: $primary;
+$footer-padding: 1rem;
+
+@import url("https://fonts.googleapis.com/css?family=Duru+Sans|Fugaz+One&display=swap");
+@import "bulma/bulma.sass";
+
+body {
+  background: $body-background-color
+    url("http://wivipro.com/Content/img/bg2013.png") no-repeat center top;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+}
+
+#wrapper {
+  width: 940px;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  font-size: 0.9rem;
+}
+
+#header {
+  padding-top: 95px;
+  ul#menu {
+    padding: 6px 0 7px 0;
+    margin-top: 7px;
+    li {
+      display: inline;
+      a {
+        font-size: 1.1rem;
+        color: #2c241d;
+        padding: 6px 3px 2px 3px;
+        margin-right: 20px;
+        text-decoration: none;
+        font-family: "Fugaz One", cursive;
+        &:hover,
+        &:active,
+        &.active {
+          color: #591b0c;
+          border-bottom: 2px solid #591b0c;
+        }
+      }
+    }
+  }
+}
+
+#content {
+  background-color: $content-background-color;
+  margin: 2rem 3rem;
+  padding: 1rem;
+}
