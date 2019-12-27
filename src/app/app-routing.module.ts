@@ -2,7 +2,13 @@ import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { HuwelijkComponent } from "./huwelijk/huwelijk.component";
 
-const routes: Routes = [{ path: "huwelijk", component: HuwelijkComponent }];
+const routes: Routes = [
+  {
+    path: "huwelijk",
+    loadChildren: () =>
+      import("./marriage/marriage.module").then(m => m.MarriageModule)
+  }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
