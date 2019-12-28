@@ -1,17 +1,10 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { MarriageComponent } from "./marriage.component";
-import { Routes, RouterModule } from "@angular/router";
-
-const routes: Routes = [
-  {
-    path: "",
-    component: MarriageComponent
-  }
-];
+import { MarriageRoutingModule } from "./marriage-routing.module";
 
 @NgModule({
   declarations: [MarriageComponent],
-  imports: [CommonModule, RouterModule.forChild(routes)]
+  imports: [CommonModule, MarriageRoutingModule]
 })
 export class MarriageModule {}
