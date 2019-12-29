@@ -1,10 +1,10 @@
 import { NgModule } from "@angular/core";
-import { CommonModule } from "@angular/common";
 import { MarriageComponent } from "./marriage.component";
 import { MarriageRoutingModule } from "./marriage-routing.module";
+import { SharedModule } from "../shared/shared.module";
 
 @NgModule({
   declarations: [MarriageComponent],
-  imports: [CommonModule, MarriageRoutingModule]
+  imports: [SharedModule, MarriageRoutingModule]
 })
 export class MarriageModule {}

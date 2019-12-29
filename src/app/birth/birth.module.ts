@@ -1,15 +1,10 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-
-import { BirthRoutingModule } from './birth-routing.module';
-import { BirthComponent } from './birth.component';
-
+import { NgModule } from "@angular/core";
+import { BirthRoutingModule } from "./birth-routing.module";
+import { BirthComponent } from "./birth.component";
+import { SharedModule } from "../shared/shared.module";
 
 @NgModule({
   declarations: [BirthComponent],
-  imports: [
-    CommonModule,
-    BirthRoutingModule
-  ]
+  imports: [SharedModule, BirthRoutingModule]
 })
-export class BirthModule { }
+export class BirthModule {}

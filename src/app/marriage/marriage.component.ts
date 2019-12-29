@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { ContextLink } from "../types/core";
+import { ContextLink } from "../shared/context-links/context-link.interface";
 
 @Component({
   selector: "app-marriage",
@@ -7,8 +7,8 @@ import { ContextLink } from "../types/core";
 })
 export class MarriageComponent implements OnInit {
   contextLinks: ContextLink[] = [
-    { label: "Buromac", url: "https://www.buromac.com/" },
-    { label: "Belarto", url: "https://www.belarto.be/" }
+    { label: "Belarto", url: "https://www.belarto.be/" },
+    { label: "Buromac", url: "https://www.buromac.com/" }
   ];
 
   constructor() {}

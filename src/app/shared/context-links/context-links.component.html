@@ -1,0 +1,8 @@
+<ul class="has-text-right">
+  <li>
+    <strong>Nuttige links:</strong>&nbsp;&nbsp;
+  </li>
+  <li *ngFor="let link of links">
+    <a href="{{link.url}}" target="_blank">{{link.label}}</a>
+  </li>
+</ul>

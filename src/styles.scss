@@ -9,6 +9,7 @@ $body-background-color: #ecebcf;
 $content-background-color: rgba(223, 217, 169, 0.6);
 $footer-background-color: $primary;
 $footer-padding: 1rem;
+$dimensions: 16 24 32 48 64 96 128 180;
 
 @import url("https://fonts.googleapis.com/css?family=Duru+Sans|Fugaz+One&display=swap");
 @import "bulma/bulma.sass";
@@ -18,21 +19,10 @@ body {
     url("http://wivipro.com/Content/img/bg2013.png") no-repeat center top;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  margin-bottom: 1.5rem;
-  font-weight: 700;
-}
-
 #wrapper {
   width: 940px;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
-  font-size: 0.9rem;
 }
 
 #header {
@@ -63,5 +53,21 @@ h6 {
 #content {
   background-color: $content-background-color;
   margin: 2rem 3rem;
-  padding: 1rem;
+  padding: 1.8rem;
+}
+
+.w-180 {
+  width: 180px;
+}
+
+.content figure {
+  margin-left: 0;
+}
+
+.image.box {
+  padding: 4px;
+}
+
+.is-size-7 {
+  font-size: 0.85rem !important;
 }
