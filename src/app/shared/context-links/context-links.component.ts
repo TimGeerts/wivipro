@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from "@angular/core";
-import { ContextLink } from "./context-link.interface";
+import { Link } from "../common/interfaces";
 
 @Component({
   selector: "app-context-links",
@@ -7,7 +7,7 @@ import { ContextLink } from "./context-link.interface";
   styleUrls: ["./context-links.component.scss"]
 })
 export class ContextLinksComponent implements OnInit {
-  @Input() links: ContextLink[] = [];
+  @Input() links: Link[] = [];
   constructor() {}
 
   ngOnInit() {}

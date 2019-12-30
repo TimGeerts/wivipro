@@ -1,0 +1,29 @@
+<nav class="navbar is-transparent" role="navigation" aria-label="main navigation">
+  <div class="container">
+    <div class="navbar-brand">
+      <a class="navbar-item" routerLink="/home" routerLinkActive="active">
+        Wivipro
+      </a>
+
+      <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
+        data-target="navbarBasicExample">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+
+    <div class="navbar-menu">
+      <div class="navbar-end">
+        <ng-container *ngFor="let link of menu">
+          <a class="navbar-item" *ngIf="link.url" href="{{link.url}}" target="_blank">
+            {{link.label}}
+          </a>
+          <a class="navbar-item" *ngIf="link.route" routerLink="{{link.route}}" routerLinkActive="active">
+            {{link.label}}
+          </a>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</nav>

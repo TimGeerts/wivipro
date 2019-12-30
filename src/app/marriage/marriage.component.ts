@@ -1,12 +1,12 @@
 import { Component, OnInit } from "@angular/core";
-import { ContextLink } from "../shared/context-links/context-link.interface";
+import { Link } from "../shared/common/interfaces";
 
 @Component({
   selector: "app-marriage",
   templateUrl: "./marriage.component.html"
 })
 export class MarriageComponent implements OnInit {
-  contextLinks: ContextLink[] = [
+  contextLinks: Link[] = [
     { label: "Belarto", url: "https://www.belarto.be/" },
     { label: "Buromac", url: "https://www.buromac.com/" }
   ];

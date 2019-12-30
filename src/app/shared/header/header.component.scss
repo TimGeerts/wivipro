@@ -1,0 +1,35 @@
+.navbar {
+  // background-color: #ecebcf;
+  background-color: rgba(223, 217, 169, 0.6);
+  // border-bottom: 1px solid #dfd9a9;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+.navbar-brand {
+  a {
+    font-size: 1.1rem;
+    font-weight: 700;
+    font-family: "Fugaz One";
+    &:hover,
+    &:active,
+    &.active {
+      color: inherit;
+    }
+  }
+}
+.navbar-menu {
+  a {
+    color: #2c241d;
+    font-weight: 700;
+    // padding: 6px 3px 2px 3px;
+    // margin-right: 20px;
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    &:hover,
+    &:active,
+    &.active {
+      color: #591b0c;
+      border-bottom: 2px solid #591b0c;
+    }
+  }
+}

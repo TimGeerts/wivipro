@@ -1,26 +1,9 @@
-<div id="wrapper" class="container">
-  <header id="header">
-    <ul id="menu" class="has-text-centered">
-      <li><a routerLink="/home" routerLinkActive="active">Home</a></li>
-      <li><a routerLink="/huwelijk" routerLinkActive="active">Huwelijk</a></li>
-      <li><a routerLink="/geboorte" routerLinkActive="active">Geboorte</a></li>
-      <li><a routerLink="/manden" routerLinkActive="active">Onze creaties</a></li>
-      <li><a id="7" href="https://www.wivipro-webshop.be" target="_blank">Webwinkel</a></li>
-      <li><a routerLink="/contact" routerLinkActive="active">Contact</a></li>
-      <li><a id="5" class="internal" href="groothandel">Groothandel</a></li>
-      <!-- <li><a id="6" class="shop groothandel" href="/Shop/Overview?groothandel=true">Webwinkel
-          (groothandel)</a></li> -->
-    </ul>
-  </header>
-  <div id="content" class="content">
-    <router-outlet></router-outlet>
-  </div>
+<app-header></app-header>
+<div class="container content">
+  <router-outlet></router-outlet>
 </div>
-
 <footer class="footer">
-  <div class="content has-text-centered">
-    <p>
-      footer
-    </p>
+  <div class="container">
+    footer
   </div>
 </footer>
