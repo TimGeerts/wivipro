@@ -3,7 +3,8 @@ import { Link } from "../shared/common/interfaces";
 
 @Component({
   selector: "app-birth",
-  templateUrl: "./birth.component.html"
+  templateUrl: "./birth.component.html",
+  styleUrls: ["./birth.component.scss"]
 })
 export class BirthComponent implements OnInit {
   contextLinks: Link[] = [

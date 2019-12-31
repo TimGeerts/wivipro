@@ -3,10 +3,16 @@ import { CommonModule } from "@angular/common";
 import { ContextLinksComponent } from "./context-links/context-links.component";
 import { HeaderComponent } from "./header/header.component";
 import { RouterModule } from "@angular/router";
+import { FooterComponent } from "./footer/footer.component";
 
 @NgModule({
-  declarations: [ContextLinksComponent, HeaderComponent],
+  declarations: [ContextLinksComponent, HeaderComponent, FooterComponent],
   imports: [CommonModule, RouterModule],
-  exports: [ContextLinksComponent, CommonModule, HeaderComponent]
+  exports: [
+    ContextLinksComponent,
+    CommonModule,
+    HeaderComponent,
+    FooterComponent
+  ]
 })
 export class SharedModule {}

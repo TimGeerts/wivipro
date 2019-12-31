@@ -11,23 +11,46 @@ $footer-background-color: $primary;
 $footer-padding: 1rem;
 $dimensions: 16 24 32 48 64 96 128 180;
 $gap: 70px;
-$widescreen-enabled: false;
-$fullhd-enabled: false;
+$widescreen-enabled: true;
+$fullhd-enabled: true;
 
 @import url("https://fonts.googleapis.com/css?family=Duru+Sans|Fugaz+One&display=swap");
 @import "bulma/bulma.sass";
 
 body {
-  background-color: $body-background-color;
-  background-image: url("./assets/images/suzi-banner.jpg");
-  background-repeat: no-repeat;
-  background-position: center top;
-  background-size: 960px;
+  // background-color: $body-background-color;
+  // background-image: url("./assets/images/suzi-banner-1344.jpg");
+  // background-repeat: no-repeat;
+  // background-position: center top;
+  // background-size: 1344px;
+
+  background: url("./assets/images/bg-custom.png") no-repeat center center fixed;
+  background-size: cover;
 }
 
-.container {
-  padding-left: 1rem;
-  padding-right: 1rem;
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  .content {
+    flex: 1;
+    padding-right: 1rem;
+    padding-left: 1rem;
+    .pagecontent {
+      background-color: $content-background-color;
+      padding: 0rem 2rem 2rem 2rem;
+    }
+  }
+}
+
+.banner {
+  margin-top: -46px;
+  margin-left: -2rem;
+  margin-right: -2rem;
+  border-bottom: 3px solid $body-background-color;
+  img {
+    @extend .is-block;
+  }
 }
 
 .w-180 {
@@ -35,13 +58,38 @@ body {
 }
 
 .content figure {
-  margin-left: 0;
+  margin: 0;
 }
 
 .image.box {
   padding: 4px;
+  background-color: $body-background-color;
 }
 
 .is-size-7 {
-  font-size: 0.85rem !important;
+  font-size: 0.9rem !important;
+}
+
+.notification.is-body-bg {
+  background-color: $body-background-color;
+  border: 1px solid $primary;
+}
+
+.footer {
+  color: #a5a591;
+  padding-bottom: 2rem;
+  h3 {
+    color: $body-background-color;
+    margin-bottom: 1rem;
+  }
+  span {
+    @extend .is-block;
+    margin-bottom: 0.2rem;
+  }
+  a {
+    color: #a5a591 !important;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 }
