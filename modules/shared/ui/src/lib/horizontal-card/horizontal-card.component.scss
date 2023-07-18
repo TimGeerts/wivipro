@@ -1,0 +1,211 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2&display=swap');
+
+// deprecated, but no clue who to do it in another way for ng-content stuff
+::ng-deep {
+  .horizontal-card__links {
+    text-align: right;
+    a {
+      font-weight: 700;
+      font-size: 0.9rem;
+      margin-left: 0.8rem;
+      margin-right: 0;
+    }
+  }
+
+  .rtl {
+    .horizontal-card__links {
+      text-align: left;
+      a {
+        margin-left: 0;
+        margin-right: 0.8rem;
+      }
+    }
+  }
+}
+
+.dark {
+  background: var(--bs-dark);
+  color: var(--bs-light) !important;
+}
+
+.light {
+  background: var(--bs-light);
+  color: var(--bs-dark) !important;
+}
+
+// a,
+// a:hover {
+//   text-decoration: none;
+//   transition: color 0.3s ease-in-out;
+// }
+
+#pageHeaderTitle {
+  margin: 2rem 0;
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 2.5rem;
+}
+
+/* Cards */
+.horizontal-card {
+  flex-wrap: wrap;
+  display: flex;
+  box-shadow: 0 2px 21px -16px rgba(0, 0, 0, 0.66);
+  margin: 0 0 2rem 0;
+  overflow: hidden;
+  position: relative;
+  color: #ffffff;
+
+  a {
+    color: inherit;
+  }
+
+  h1,
+  .h1 {
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    line-height: 1.2;
+  }
+
+  .small {
+    font-size: 80%;
+  }
+
+  .horizontal-card__title {
+    font-size: 1.75rem;
+    font-family: 'Baloo 2', cursive;
+  }
+
+  .horizontal-card__img {
+    max-height: 180px;
+    width: 100%;
+    object-fit: cover;
+    position: relative;
+  }
+
+  .horizontal-card__img_link {
+    display: contents;
+  }
+
+  .horizontal-card__text {
+    padding: 1.5rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .horizontal-card__preview-txt {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: justify;
+    height: 100%;
+  }
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: linear-gradient(
+      -70deg,
+      var(--bs-secondary),
+      transparent 50%
+    );
+    opacity: 1;
+  }
+  &.rtl:before {
+    background-image: linear-gradient(
+      70deg,
+      var(--bs-secondary),
+      transparent 50%
+    );
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .horizontal-card {
+    flex-wrap: inherit;
+
+    .horizontal-card__title {
+      font-size: 2rem;
+    }
+
+    .horizontal-card__img {
+      max-width: 300px;
+      max-height: 100%;
+      transition: transform 0.3s ease;
+    }
+
+    .horizontal-card__text {
+      padding: 3rem;
+      width: 100%;
+    }
+
+    &:hover .horizontal-card__img {
+      transform: scale(1.1);
+    }
+
+    &.rtl {
+      flex-direction: row-reverse;
+      .horizontal-card__text::after {
+        right: -12px !important;
+        transform: rotate(-4deg);
+      }
+    }
+
+    .horizontal-card__text::before {
+      left: -12px !important;
+      transform: rotate(4deg);
+    }
+  }
+}
+@media screen and (min-width: 1024px) {
+  .horizontal-card__text {
+    padding: 2rem 3.5rem;
+  }
+
+  .horizontal-card__text:before {
+    content: '';
+    position: absolute;
+    display: block;
+    top: -20%;
+    height: 130%;
+    width: 45px;
+  }
+  .rtl {
+    .horizontal-card__text:before {
+      display: none;
+    }
+    .horizontal-card__text:after {
+      content: '';
+      position: absolute;
+      display: block;
+      right: 0;
+      top: -20%;
+      height: 130%;
+      width: 45px;
+    }
+  }
+
+  .horizontal-card.no-img {
+    .horizontal-card__text:before,
+    .horizontal-card__text:after {
+      display: none;
+    }
+  }
+
+  .horizontal-card.dark {
+    .horizontal-card__text:before,
+    .horizontal-card__text:after {
+      background: var(--bs-dark);
+    }
+  }
+  .horizontal-card.light {
+    .horizontal-card__text:before,
+    .horizontal-card__text:after {
+      background: var(--bs-light);
+    }
+  }
+}

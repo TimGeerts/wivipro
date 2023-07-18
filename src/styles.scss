@@ -1,1 +1,449 @@
-/* You can add global styles to this file, and also import other style files */
+// override bootstrap theme vars (bootstrap 5.1.3)
+$primary: #855f3d;
+// $secondary: #dfd9a9;
+$secondary: #dfd9a9;
+
+$success: #4caf50;
+$info: #29b6f6;
+$warning: #ffeb3b;
+$danger: #b71c1c;
+$light: #ecebcf;
+$dark: #212121;
+
+$table-hover-bg: $secondary;
+
+@import 'node_modules/bootstrap/scss/bootstrap.scss';
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2&family=Bilbo+Swash+Caps&family=Roboto:wght@100;300;400;700&display=swap');
+
+// wivipro vars
+$accent: #a5a591;
+
+:root {
+  --fa-animation-duration: 1s;
+}
+
+// layout/wrapper
+html,
+body,
+.wrapper,
+.offcanvas {
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 16px;
+  background-color: var(--bs-light);
+  letter-spacing: 0.0625rem;
+  color: $dark;
+  text-rendering: optimizeLegibility;
+}
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+// layout/nav
+.nav {
+  font-family: 'Baloo 2', cursive;
+  .profile {
+    ul {
+      margin-top: 0.5rem;
+      margin-bottom: 0.5rem;
+      list-style-type: none;
+      li {
+        a {
+          margin-right: 0;
+          font-size: 0.8rem;
+          padding: 6px 0px 2px 3px;
+          text-decoration: none;
+          &.active {
+            border-bottom: 3px solid var(--bs-primary);
+          }
+        }
+      }
+    }
+  }
+}
+
+// layout/header
+.header {
+  z-index: 1;
+  background-color: var(--bs-primary);
+  color: $light;
+  @media screen and (max-width: 769px) {
+    position: sticky;
+    top: 0;
+  }
+  .brand {
+    align-items: center;
+    .title {
+      font-family: 'Bilbo Swash Caps', cursive;
+      font-size: 6rem;
+      cursor: pointer;
+      @media screen and (max-width: 769px) {
+        font-size: 2rem;
+      }
+    }
+    .subtitle {
+      img {
+        height: 50px;
+      }
+    }
+  }
+}
+
+// layout/content
+.content {
+  flex: 1 0 auto;
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+// layout/footer
+.footer {
+  background: var(--bs-primary);
+  padding-top: 20px;
+  padding-bottom: 10px;
+  margin-top: auto;
+  color: $accent;
+  strong {
+    color: var(--bs-light);
+  }
+
+  a {
+    color: $accent;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+      color: var(--bs-light);
+    }
+  }
+
+  .hours {
+    td:nth-child(1) {
+      padding-right: 0.75rem;
+    }
+  }
+
+  .social {
+    font-size: 2.5rem;
+    a {
+      margin-right: 0.6rem !important;
+      line-height: 0;
+    }
+  }
+}
+
+// utilities
+.extra-info {
+  font-size: 0.875em;
+  font-style: italic;
+  padding-left: 0.75rem;
+  border-left: 3px solid $accent;
+  opacity: 0.8;
+}
+
+p > a {
+  font-weight: 700;
+}
+
+// forms
+.form-control:focus {
+  box-shadow: none !important;
+  border: 1px solid var(--bs-primary);
+}
+
+.form-check-input:hover {
+  cursor: pointer;
+}
+
+.form-control.ng-dirty.ng-invalid:not(.ng-pristine):not(:focus) {
+  border-color: var(--bs-danger);
+  + i {
+    display: inline-block;
+  }
+}
+.validation-info {
+  display: none;
+  color: var(--bs-danger);
+  float: right;
+  margin-top: -22px;
+  margin-right: 6px;
+}
+
+// focus
+.no-focus {
+  &:focus,
+  &:focus-visible {
+    outline: none !important;
+    box-shadow: none !important;
+  }
+}
+
+// buttons
+button {
+  &.btn {
+    &.btn-secondary {
+      background-color: transparent;
+    }
+    &:focus {
+      box-shadow: none;
+    }
+    i {
+      margin-left: 0.5rem;
+      &.undefined {
+        display: none;
+      }
+    }
+    > i:only-child {
+      margin-left: 0;
+    }
+    .btn-outline-primary:hover {
+      background-color: var(--bs-secondary);
+      color: var(--bs-primary);
+    }
+  }
+  &.btn-close {
+    &:focus {
+      box-shadow: none;
+    }
+  }
+}
+
+// no focus
+*:focus {
+  box-shadow: none !important;
+}
+
+// tables
+table.table {
+  > :not(:first-child) {
+    border-top: 0; //reset silly bootstrap tableheader border
+  }
+  > thead {
+    th {
+      @extend .text-capitalize;
+      border-bottom: 1px solid var(--bs-primary);
+    }
+  }
+  th,
+  td {
+    vertical-align: middle;
+  }
+  td > div.btn-group {
+    button > i {
+      transition: 250ms ease-in-out;
+      color: var(--bs-primary);
+      opacity: 0.2;
+    }
+    button:hover > i.fa-trash {
+      color: var(--bs-danger);
+    }
+    button:hover > i {
+      opacity: 1;
+    }
+  }
+  &.table-hover {
+    td {
+      transition: 100ms ease-in-out !important; //transition for hovercolor
+    }
+  }
+  &.table-sm {
+    font-size: 0.9rem;
+    padding: 0.5rem;
+    .badge {
+      font-size: 0.9rem;
+    }
+  }
+}
+
+// emptystates
+.no-filtered-results {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  border: 2px dashed var(--bs-secondary);
+  padding: 0.5rem;
+  font-size: 0.9rem;
+  a {
+    font-size: 0.8rem;
+    padding: 6px 0px 2px 3px;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+}
+
+// offcanvas
+.offcanvas {
+  width: 600px;
+  font-size: 0.9rem;
+}
+
+// toasts
+.toast-container {
+  &.toast-bottom-center .ngx-toastr {
+    width: 600px;
+  }
+  .ngx-toastr {
+    box-shadow: 0 0 5px var(--bs-gray-500);
+    color: var(--bs-dark);
+    background: linear-gradient(70deg, var(--bs-secondary), var(--bs-light));
+    width: 250px;
+    border-left: 6px solid var(--bs-primary);
+    padding: 0.5rem 1rem;
+    .toast-message {
+      line-height: initial;
+    }
+    pre {
+      white-space: pre-wrap;
+    }
+    .toast-close-button {
+      color: var(--bs-dark);
+    }
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+    }
+    &:hover {
+      box-shadow: 0 0 5px var(--bs-gray-500);
+    }
+    &.toast-loading {
+      .toast-message {
+        padding: 0;
+        font-size: 0.875em;
+        i {
+          color: var(--bs-primary);
+          margin-right: 0.5rem;
+          opacity: 0.5;
+        }
+      }
+    }
+    &.toast-info,
+    &.toast-success,
+    &.toast-warning,
+    &.toast-error {
+      &:before {
+        position: relative;
+        font-family: 'Font Awesome 6 Free';
+        font-weight: 900;
+        font-size: 1.4rem;
+        float: left;
+        // margin-left: -1em;
+        // padding-left: 0.5rem;
+        // margin-right: 2rem;
+      }
+    }
+    &.toast-info {
+      border-color: $blue-600;
+      background: linear-gradient(70deg, $blue-100, var(--bs-light));
+      &:before {
+        color: $blue-600;
+        content: '\f05a';
+      }
+    }
+    &.toast-success {
+      border-color: $green;
+      background: linear-gradient(70deg, $green-100, var(--bs-light));
+      &:before {
+        color: $green;
+        content: '\f058';
+      }
+    }
+    &.toast-warning {
+      border-color: $yellow-600;
+      background: linear-gradient(70deg, $yellow-100, var(--bs-light));
+      &:before {
+        color: $yellow-600;
+        content: '\f071';
+      }
+    }
+    &.toast-error {
+      width: 580px;
+      border-color: $red;
+      background: linear-gradient(70deg, $red-100, var(--bs-light));
+      .toast-message {
+        padding-left: 3.5rem;
+      }
+      &:before {
+        font-size: 2rem;
+        color: $red;
+        margin-right: 1.5rem;
+        content: '\f06a';
+      }
+    }
+    .toast-title,
+    .toast-message {
+      padding-left: 2.5rem;
+    }
+    .toast-message {
+      font-size: 0.9rem;
+      padding-top: 0.5rem;
+    }
+  }
+}
+
+//modal
+.modal-dialog {
+  .modal-content {
+    background-color: var(--bs-light);
+  }
+  .confirm-delete {
+    border: 2px solid var(--bs-danger);
+    .modal-body i {
+      font-size: 5rem;
+      color: var(--bs-danger);
+      margin-top: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .modal-footer {
+      border-top: 0;
+      justify-content: center;
+    }
+    .btn-outline-danger:hover {
+      background-color: $red-100;
+      color: var(--bs-danger);
+    }
+  }
+}
+
+.modal-dialog.image-viewer {
+  .modal-content {
+    border: 0;
+    background: var(--bs-dark);
+  }
+  .modal-header,
+  .modal-body,
+  .modal-footer {
+    border: 0;
+    color: #fff;
+  }
+  .modal-body {
+    button {
+      color: currentColor;
+      background-color: transparent;
+      &:hover {
+        border: 1px solid currentColor;
+      }
+    }
+    .prev > button:hover > i {
+      transform: scale(1.2);
+      transform: translateX(-0.2rem);
+      transition: 250ms ease-in-out;
+    }
+    .next > button:hover > i {
+      transform: scale(1.2);
+      transform: translateX(0.2rem);
+      transition: 250ms ease-in-out;
+    }
+  }
+  .modal-footer {
+    margin-bottom: 1rem;
+    font-size: 0.85rem;
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2022",
+    "module": "esnext",
+    "lib": ["es2020", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@wivipro/modules/about": ["modules/about/src/index.ts"],
+      "@wivipro/modules/birth": ["modules/birth/src/index.ts"],
+      "@wivipro/modules/home": ["modules/home/src/index.ts"],
+      "@wivipro/modules/marriage": ["modules/marriage/src/index.ts"],
+      "@wivipro/modules/shared/ui": ["modules/shared/ui/src/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}
