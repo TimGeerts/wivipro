@@ -1,17 +1,17 @@
-<div class="menu {{ class }}">
+<div class="menu {{ class }}" [ngClass]="{'menu-right': right}">
   <ul>
+    <li *ngIf="showHome">
+      <i class="fa-solid fa-house"></i>
+      <a href="#" title="Home" routerLink="/home" routerLinkActive="active">Home</a>
+    </li>
     <li *ngFor="let item of menuItems">
-      <a
-        href="#"
-        title="{{ item.label }}"
-        *ngIf="item.routerLink"
-        routerLink="{{ item.routerLink }}"
-        routerLinkActive="active"
-        >{{ item.label }}</a
-      >
-      <a *ngIf="item.extLink" href="{{ item.extLink }}" target="_blank">{{
+      <!-- <i *ngIf="item.icon" class="fa-solid fa-cart-shopping"></i>  -->
+      <i *ngIf="item.icon" class="{{item.icon}}"></i>
+      <a href="#" title="{{ item.label }}" *ngIf="item.routerLink" routerLink="{{ item.routerLink }}"
+        routerLinkActive="active">{{ item.label }}</a>
+      <a *ngIf="item.extLink" title="{{ item.label }}" href="{{ item.extLink }}" target="_blank">{{
         item.label
-      }}</a>
+        }}</a>
     </li>
   </ul>
 </div>

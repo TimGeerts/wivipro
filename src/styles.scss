@@ -45,24 +45,6 @@ body,
 // layout/nav
 .nav {
   font-family: 'Baloo 2', cursive;
-  .profile {
-    ul {
-      margin-top: 0.5rem;
-      margin-bottom: 0.5rem;
-      list-style-type: none;
-      li {
-        a {
-          margin-right: 0;
-          font-size: 0.8rem;
-          padding: 6px 0px 2px 3px;
-          text-decoration: none;
-          &.active {
-            border-bottom: 3px solid var(--bs-primary);
-          }
-        }
-      }
-    }
-  }
 }
 
 // layout/header

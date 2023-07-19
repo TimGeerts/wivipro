@@ -16,6 +16,8 @@ import {
 export class AppComponent implements OnInit {
   title = 'Wivipro';
   menuItems: IMenuItem[] = new Array<IMenuItem>();
+  menuItemsRight: IMenuItem[] = new Array<IMenuItem>();
+  hamburgerMenuItems: IMenuItem[] = new Array<IMenuItem>();
 
   constructor(private router: Router) {}
 
@@ -49,10 +51,19 @@ export class AppComponent implements OnInit {
         label: 'Geschenken',
         routerLink: '/gifts',
       },
+    ];
+    this.menuItemsRight = [
+      {
+        label: 'Maak een afspraak',
+        extLink: 'https://calendly.com/wivipro/afspraak',
+        icon: 'fa-regular fa-calendar',
+      },
       {
         label: 'Webshop',
         extLink: 'http://www.wivipro-webshop.be',
+        icon: 'fa-solid fa-cart-shopping',
       },
     ];
+    this.hamburgerMenuItems = [...this.menuItems, ...this.menuItemsRight];
   }
 }
