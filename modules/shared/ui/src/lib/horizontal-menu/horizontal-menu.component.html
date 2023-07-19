@@ -1,7 +1,6 @@
 <div class="menu {{ class }}" [ngClass]="{'menu-right': right}">
   <ul>
-    <li *ngIf="showHome">
-      <i class="fa-solid fa-house"></i>
+    <li *ngIf="!right">
       <a href="#" title="Home" routerLink="/home" routerLinkActive="active">Home</a>
     </li>
     <li *ngFor="let item of menuItems">
