@@ -32,32 +32,21 @@ export class AppComponent implements OnInit {
   private initMenu(): void {
     this.menuItems = [
       {
-        label: 'Over ons',
-        routerLink: '/about',
-      },
-      {
-        label: 'Huwelijk',
-        routerLink: '/marriage',
-      },
-      {
-        label: 'Geboorte',
-        routerLink: '/birth',
-      },
-      {
-        label: 'Creaties',
+        label: "Foto's",
         routerLink: '/creations',
       },
-      {
-        label: 'Geschenken',
-        routerLink: '/gifts',
-      },
-    ];
-    this.menuItemsRight = [
+
       {
         label: 'Maak een afspraak',
         extLink: 'https://calendly.com/wivipro/afspraak',
-        icon: 'fa-regular fa-calendar',
       },
+    ];
+    this.menuItemsRight = [
+      // {
+      //   label: 'Maak een afspraak',
+      //   extLink: 'https://calendly.com/wivipro/afspraak',
+      //   icon: 'fa-regular fa-calendar',
+      // },
       {
         label: 'Webshop',
         extLink: 'http://www.wivipro-webshop.be',

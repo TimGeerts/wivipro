@@ -18,6 +18,12 @@ $table-hover-bg: $secondary;
 // wivipro vars
 $accent: #a5a591;
 
+//brand font
+@font-face {
+  font-family: wiviproBrand;
+  src: url(./assets/VIVALDII.TTF);
+}
+
 :root {
   --fa-animation-duration: 1s;
 }
@@ -59,7 +65,8 @@ body,
   .brand {
     align-items: center;
     .title {
-      font-family: 'Bilbo Swash Caps', cursive;
+      // font-family: 'Bilbo Swash Caps', cursive;
+      font-family: wiviproBrand, cursive;
       font-size: 6rem;
       cursor: pointer;
       @media screen and (max-width: 769px) {

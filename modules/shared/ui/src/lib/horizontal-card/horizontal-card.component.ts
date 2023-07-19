@@ -2,7 +2,6 @@
 
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'wivipro-horizontal-card',
@@ -17,12 +16,4 @@ export class HorizontalCardComponent {
   @Input() cardTitle = '';
   @Input() titleClass = '';
   @Input() img = '';
-  @Input() link = '';
-
-  constructor(private router: Router) {}
-
-  onClick(): void {
-    if (!this.link) return;
-    this.router.navigate([this.link]);
-  }
 }
