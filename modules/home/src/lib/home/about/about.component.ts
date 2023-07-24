@@ -7,6 +7,7 @@ import { HorizontalCardComponent } from '@wivipro/modules/shared/ui';
   standalone: true,
   imports: [CommonModule, HorizontalCardComponent],
   templateUrl: './about.component.html',
+  styleUrls: ['./about.component.scss'],
 })
 export class AboutComponent implements OnInit {
   private images = ['vera.jpg'];

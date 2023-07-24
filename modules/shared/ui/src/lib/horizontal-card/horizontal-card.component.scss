@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Baloo+2&display=swap');
-
 // deprecated, but no clue who to do it in another way for ng-content stuff
 ::ng-deep {
   .horizontal-card__links {
@@ -36,12 +34,6 @@
   background: var(--bs-light);
   color: var(--bs-dark) !important;
 }
-
-// a,
-// a:hover {
-//   text-decoration: none;
-//   transition: color 0.3s ease-in-out;
-// }
 
 #pageHeaderTitle {
   margin: 2rem 0;
@@ -113,7 +105,7 @@
     bottom: 0;
     left: 0;
     background-image: linear-gradient(
-      -70deg,
+      -80deg,
       var(--bs-secondary),
       transparent 50%
     );
@@ -121,7 +113,7 @@
   }
   &.rtl:before {
     background-image: linear-gradient(
-      70deg,
+      80deg,
       var(--bs-secondary),
       transparent 50%
     );
@@ -148,7 +140,7 @@
     }
 
     &:hover .horizontal-card__img {
-      transform: scale(1.1);
+      transform: scale(1.05);
     }
 
     &.rtl {
