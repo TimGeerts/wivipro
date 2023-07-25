@@ -1,0 +1,75 @@
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 1rem;
+
+  .gallery-image {
+    position: relative;
+    overflow: hidden;
+    width: 150px;
+
+    &.addnew {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: var(--bs-primary);
+      font-size: 3rem;
+      border: 2px dashed currentColor;
+      opacity: 0.2;
+      &:hover {
+        cursor: pointer;
+        opacity: 0.8;
+      }
+    }
+
+    .actions {
+      opacity: 0;
+      position: absolute;
+      inset: 0;
+      color: var(--bs-primary);
+      background-color: rgba(var(--bs-light-rgb), 0.8);
+      border: 1px solid currentColor;
+      i {
+        font-size: 1.5rem;
+        opacity: 0.6;
+        transition: 250ms;
+        cursor: pointer;
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+
+    &:hover {
+      .actions {
+        opacity: 1;
+      }
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 1/1;
+      object-fit: cover;
+      object-position: center;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+  }
+
+  &.manage {
+    .gallery-image:hover > img {
+      filter: blur(1px);
+      transform: scale(1.1);
+    }
+  }
+
+  .gallery-image img,
+  .gallery-image.addnew,
+  .gallery-image .actions {
+    transition: 250ms ease-in-out;
+  }
+}

@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@wivipro/modules/gallery": ["modules/gallery/src/index.ts"],
       "@wivipro/modules/home": ["modules/home/src/index.ts"],
       "@wivipro/modules/shared/ui": ["modules/shared/ui/src/index.ts"]
     }

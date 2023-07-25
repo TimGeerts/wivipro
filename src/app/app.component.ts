@@ -33,7 +33,7 @@ export class AppComponent implements OnInit {
     this.menuItems = [
       {
         label: "Foto's",
-        routerLink: '/creations',
+        routerLink: '/gallery',
       },
 
       {
@@ -42,11 +42,6 @@ export class AppComponent implements OnInit {
       },
     ];
     this.menuItemsRight = [
-      // {
-      //   label: 'Maak een afspraak',
-      //   extLink: 'https://calendly.com/wivipro/afspraak',
-      //   icon: 'fa-regular fa-calendar',
-      // },
       {
         label: 'Webshop',
         extLink: 'http://www.wivipro-webshop.be',

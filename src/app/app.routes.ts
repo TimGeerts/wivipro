@@ -11,4 +11,9 @@ export const appRoutes: Route[] = [
     loadComponent: () =>
       import('@wivipro/modules/home').then((m) => m.HomeComponent),
   },
+  {
+    path: 'gallery',
+    loadComponent: () =>
+      import('@wivipro/modules/gallery').then((m) => m.GalleryComponent),
+  },
 ];
