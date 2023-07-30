@@ -85,12 +85,14 @@ export class ImageGridComponent implements OnInit, OnDestroy {
     console.log('add');
   }
 
-  edit(img: IGalleryItem): void {
+  edit(e: Event, img: IGalleryItem): void {
     console.log('edit ', img);
+    e.stopPropagation();
   }
 
-  delete(img: IGalleryItem): void {
+  delete(e: Event, img: IGalleryItem): void {
     console.log('delete ', img);
+    e.stopPropagation();
   }
 
   show(index: number): void {

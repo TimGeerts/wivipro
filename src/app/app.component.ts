@@ -1,6 +1,8 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import {
+  AuthService,
   HamburgerMenuComponent,
   HorizontalMenuComponent,
   IMenuItem,
@@ -8,25 +10,36 @@ import {
 
 @Component({
   standalone: true,
-  imports: [RouterModule, HorizontalMenuComponent, HamburgerMenuComponent],
+  imports: [
+    CommonModule,
+    RouterModule,
+    HorizontalMenuComponent,
+    HamburgerMenuComponent,
+  ],
   selector: 'wivipro-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
   title = 'Wivipro';
+  uid?: string;
   menuItems: IMenuItem[] = new Array<IMenuItem>();
   menuItemsRight: IMenuItem[] = new Array<IMenuItem>();
   hamburgerMenuItems: IMenuItem[] = new Array<IMenuItem>();
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, public authService: AuthService) {}
 
   ngOnInit(): void {
+    this.uid = localStorage.getItem('user') || '';
     this.initMenu();
   }
 
   goHome(): void {
     this.router.navigate(['home']);
+  }
+
+  signOut(): void {
+    this.authService.signOut();
   }
 
   private initMenu(): void {
@@ -48,6 +61,7 @@ export class AppComponent implements OnInit {
         icon: 'fa-solid fa-cart-shopping',
       },
     ];
+
     this.hamburgerMenuItems = [...this.menuItems, ...this.menuItemsRight];
   }
 }

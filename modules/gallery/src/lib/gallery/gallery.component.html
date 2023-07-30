@@ -1,1 +1,1 @@
-<wivipro-image-grid [images]="gallery"></wivipro-image-grid>
+<wivipro-image-grid [images]="gallery" [manage]="(authService.$loggedIn | async) ?? false"></wivipro-image-grid>

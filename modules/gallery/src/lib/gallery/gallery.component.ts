@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { IGalleryItem, ImageGridComponent } from '@wivipro/modules/shared/ui';
+import {
+  AuthService,
+  IGalleryItem,
+  ImageGridComponent,
+} from '@wivipro/modules/shared/ui';
 
 @Component({
   selector: 'wivipro-gallery',
@@ -11,6 +15,8 @@ import { IGalleryItem, ImageGridComponent } from '@wivipro/modules/shared/ui';
 })
 export class GalleryComponent implements OnInit {
   gallery: IGalleryItem[] = new Array<IGalleryItem>();
+
+  constructor(public authService: AuthService) {}
   // modalOptions: NgbModalOptions = { size: 'lg' };
 
   // constructor(
