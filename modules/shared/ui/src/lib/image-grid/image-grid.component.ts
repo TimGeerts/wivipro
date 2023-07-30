@@ -5,7 +5,7 @@ import { Observable, Subject, of, takeUntil } from 'rxjs';
 import { InfiniteScrolling } from './services/infinite-scrolling.service';
 import { ImageViewerComponent } from './image-viewer/image-viewer.component';
 import { NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
-import { ModalService } from '../services/modal-service/modal.service';
+import { ModalService } from '../services/modal.service';
 
 @Component({
   selector: 'wivipro-image-grid',

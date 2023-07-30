@@ -16,4 +16,9 @@ export const appRoutes: Route[] = [
     loadComponent: () =>
       import('@wivipro/modules/gallery').then((m) => m.GalleryComponent),
   },
+  {
+    path: 'admin',
+    loadChildren: () =>
+      import('@wivipro/modules/admin').then((mod) => mod.ADMIN_ROUTES),
+  },
 ];

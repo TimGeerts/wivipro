@@ -1,0 +1,29 @@
+<wivipro-horizontal-card cardTitle="Aanmelden" titleClass="text-center mb-3" class="d-block rtl">
+  <div class="d-flex justify-content-center">
+    <div class="login-wrap w-50">
+      <form class="signin-form" [formGroup]="form" (ngSubmit)="login()">
+        <div class="form-group mb-3">
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Gebruikersnaam" formControlName="username" />
+            <span class="input-group-text">
+              <i class="fas fa-user"></i>
+            </span>
+          </div>
+        </div>
+        <div class="form-group mb-3">
+          <div class="input-group mb-3">
+            <input type="password" class="form-control" placeholder="Paswoord" formControlName="password" />
+            <span class="input-group-text">
+              <i class="fas fa-lock"></i>
+            </span>
+          </div>
+        </div>
+        <div class="form-group mb-3">
+          <button type="submit" [disabled]="!form.valid" class="form-control btn btn-primary rounded submit px-3">
+            Aanmelden
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</wivipro-horizontal-card>
