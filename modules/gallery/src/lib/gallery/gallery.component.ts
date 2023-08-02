@@ -2,9 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   AuthService,
-  IGalleryItem,
+  FireStorageService,
+  FirestoreService,
+  IImageGridItem,
   ImageGridComponent,
+  ImageGridItemUpload,
 } from '@wivipro/modules/shared/ui';
+import { Observable, Subscription, of, take } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'wivipro-gallery',
@@ -14,35 +19,62 @@ import {
   styleUrls: ['./gallery.component.scss'],
 })
 export class GalleryComponent implements OnInit {
-  gallery: IGalleryItem[] = new Array<IGalleryItem>();
+  loaded = false;
+  gallerySubscription!: Subscription;
+  gallery$!: Observable<IImageGridItem[]>;
 
-  constructor(public authService: AuthService) {}
-  // modalOptions: NgbModalOptions = { size: 'lg' };
+  gallery: IImageGridItem[] = new Array<IImageGridItem>();
 
-  // constructor(
-  //   private modalService: ModalService,
-  //   private authService: AuthService
-  // ) {
-  //   this.authService.isAdmin.subscribe((isAdmin) => {
-  //     this.isAdmin = isAdmin;
-  //     this.canmanage = isAdmin;
-  //   });
-  // }
+  constructor(
+    public authService: AuthService,
+    private activatedRoute: ActivatedRoute,
+    private firestorageService: FireStorageService,
+    private firestoreService: FirestoreService
+  ) {}
 
   ngOnInit(): void {
-    this.initGallery();
+    this.activatedRoute.queryParamMap.pipe(take(1)).subscribe((data) => {
+      console.log(data);
+      if (data.get('debug')) {
+        this.mockGallery();
+      } else {
+        this.initGallery();
+      }
+    });
   }
 
+  addImage = (item: ImageGridItemUpload): void => {
+    //handle uploading the file to firebase storage and saving the info to firestore
+
+    this.firestorageService.upload(item.file).then((url) => {
+      // this.firestoreService.addDocument<IImageGridItem>('gallery', {
+      //   fileSmall: url,
+      //   fileLarge: url,
+      //   description: item.description,
+      // });
+      this.firestoreService.setDocument<IImageGridItem>('gallery', 'myid', {
+        fileSmall: url,
+        fileLarge: url,
+        description: item.description,
+      });
+    });
+  };
+
   private initGallery(): void {
-    // this.getImages();
-    console.log('init gallery');
+    this.gallery$ =
+      this.firestoreService.getCollection<IImageGridItem>('gallery');
+  }
+
+  private mockGallery() {
+    const mockArr = new Array<IImageGridItem>();
     for (let i = 0; i < 100; i++) {
-      this.gallery.push({
-        fileName: `https://picsum.photos/150?random=${i}`,
+      mockArr.push({
+        fileSmall: `https://picsum.photos/150?random=${i}`,
         fileLarge: `https://picsum.photos/500?random=${i}`,
         description:
           'This is a short description of the picture you are currently viewing.',
       });
     }
+    this.gallery$ = of(mockArr);
   }
 }

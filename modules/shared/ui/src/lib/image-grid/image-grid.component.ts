@@ -1,11 +1,20 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { IGalleryItem } from '../types/gallery-item';
-import { Observable, Subject, of, takeUntil } from 'rxjs';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+} from '@angular/core';
+import { IImageGridItem } from '../types/image-grid-item';
+import { Observable, Subject, map, of, takeUntil } from 'rxjs';
 import { InfiniteScrolling } from './services/infinite-scrolling.service';
 import { ImageViewerComponent } from './image-viewer/image-viewer.component';
 import { NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { ModalService } from '../services/modal.service';
+import { AddImageComponent } from './add-image/add-image.component';
+import { ImageGridItemUpload } from '../types/image-grid-item-upload';
 
 @Component({
   selector: 'wivipro-image-grid',
@@ -15,17 +24,19 @@ import { ModalService } from '../services/modal.service';
   styleUrls: ['./image-grid.component.scss'],
 })
 export class ImageGridComponent implements OnInit, OnDestroy {
-  @Input() images: IGalleryItem[] = new Array<IGalleryItem>();
+  @Input() images$!: Observable<IImageGridItem[]>;
   @Input() manage = false;
 
-  // @Output() addImage: EventEmitter<void> = new EventEmitter<void>();
+  @Output() addImage: EventEmitter<ImageGridItemUpload> =
+    new EventEmitter<ImageGridItemUpload>();
   // @Output() editImage: EventEmitter<IGalleryImage> =
   //   new EventEmitter<IGalleryImage>();
   // @Output() deleteImage: EventEmitter<IGalleryImage> =
   //   new EventEmitter<IGalleryImage>();
 
   private readonly unsubscribe$: Subject<void> = new Subject();
-  imgData: IGalleryItem[] = new Array<IGalleryItem>();
+  images: IImageGridItem[] = new Array<IImageGridItem>();
+  imgData: IImageGridItem[] = new Array<IImageGridItem>();
   startLimit = 0;
   endLimit = 10;
   modalOptions: NgbModalOptions = {
@@ -39,7 +50,12 @@ export class ImageGridComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.getImages(this.startLimit, this.endLimit);
+    this.images$.pipe(takeUntil(this.unsubscribe$)).subscribe((images) => {
+      this.images = images;
+      this.imgData = new Array<IImageGridItem>();
+      this.loadGrid(this.startLimit, this.endLimit);
+    });
+
     this.scrollService
       .getObservable()
       .pipe(takeUntil(this.unsubscribe$))
@@ -47,7 +63,7 @@ export class ImageGridComponent implements OnInit, OnDestroy {
         if (s) {
           this.startLimit = this.startLimit + 10;
           this.endLimit = this.endLimit + 10;
-          this.getImages(this.startLimit, this.endLimit);
+          this.loadGrid(this.startLimit, this.endLimit);
         }
       });
   }
@@ -57,11 +73,12 @@ export class ImageGridComponent implements OnInit, OnDestroy {
     this.unsubscribe$.complete();
   }
 
-  getImages(start: number, end: number) {
-    this.mockImgService(start, end)
+  private loadGrid(start: number, end: number) {
+    of(this.images.slice(start, end))
       .pipe(takeUntil(this.unsubscribe$))
-      .subscribe(
-        (r) => {
+      .subscribe({
+        next: (r) => {
+          console.log(start, end, r);
           this.imgData = this.imgData.concat(r);
           const clear = setInterval(() => {
             const target = document.querySelector(`#gimg${end}`);
@@ -71,26 +88,55 @@ export class ImageGridComponent implements OnInit, OnDestroy {
             }
           }, 100);
         },
-        (err) => {
-          console.log(err);
-        }
-      );
+        error: (e) => console.error(e),
+      });
   }
 
-  mockImgService(start: number, end: number): Observable<IGalleryItem[]> {
-    return of(this.images.slice(start, end));
-  }
+  // getImages(start: number, end: number) {
+  //   this.mockImgService(start, end)
+  //     .pipe(takeUntil(this.unsubscribe$))
+  //     .subscribe(
+  //       (r) => {
+  //         this.imgData = this.imgData.concat(r);
+  //         const clear = setInterval(() => {
+  //           const target = document.querySelector(`#gimg${end}`);
+  //           if (target) {
+  //             clearInterval(clear);
+  //             this.scrollService.setObserver().observe(target);
+  //           }
+  //         }, 100);
+  //       },
+  //       (err) => {
+  //         console.log(err);
+  //       }
+  //     );
+  // }
 
+  // mockImgService(start: number, end: number): Observable<IImageGridItem[]> {
+  //   return of(this.images.slice(start, end));
+  // }
+
+  // imgPager(start: number, end: number): Observable<IImageGridItem[]> {
+  //   return this.images$.pipe()
+  // }
+
+  // image CRUD functions
   add(): void {
     console.log('add');
+    this.modalService
+      .showOffCanvas<AddImageComponent, ImageGridItemUpload>(AddImageComponent)
+      .pipe(map((r) => r.Data))
+      .subscribe((r) => {
+        this.addImage.emit(r);
+      });
   }
 
-  edit(e: Event, img: IGalleryItem): void {
+  edit(e: Event, img: IImageGridItem): void {
     console.log('edit ', img);
     e.stopPropagation();
   }
 
-  delete(e: Event, img: IGalleryItem): void {
+  delete(e: Event, img: IImageGridItem): void {
     console.log('delete ', img);
     e.stopPropagation();
   }

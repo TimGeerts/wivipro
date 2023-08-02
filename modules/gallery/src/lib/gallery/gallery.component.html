@@ -1,1 +1,12 @@
-<wivipro-image-grid [images]="gallery" [manage]="(authService.$loggedIn | async) ?? false"></wivipro-image-grid>
+<!-- <ng-container *ngIf="(gallery$ | async) as images">
+  <span>{{images.length}}</span>
+  <wivipro-image-grid [images$]="gallery$" [manage]="(authService.$loggedIn | async) ?? false"
+    (addImage)="addImage($event)"></wivipro-image-grid>
+</ng-container>
+<ng-container *ngIf="(gallery$ | async) === null">
+  Foto's komen!
+</ng-container> -->
+
+<p>
+  Foto's komen er aan, we zijn nog volop aan het fotograferen om alle vernieuwde artikelen te kunnen tonen!
+</p>
