@@ -1,7 +1,7 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subject } from 'rxjs';
-import { IImageGridItem } from '../../types/image-grid-item';
+import { ImageGridItem } from '../../types/image-grid-item';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -11,12 +11,12 @@ import { CommonModule } from '@angular/common';
   templateUrl: './image-viewer.component.html',
 })
 export class ImageViewerComponent implements OnInit {
-  images!: IImageGridItem[];
+  images!: ImageGridItem[];
   index = 0;
   max = 0;
-  currentImage?: IImageGridItem;
+  currentImage?: ImageGridItem;
 
-  private _img$ = new Subject<IImageGridItem>();
+  private _img$ = new Subject<ImageGridItem>();
   readonly img$ = this._img$.asObservable();
 
   @HostListener('keydown.ArrowLeft') keyLeft() {

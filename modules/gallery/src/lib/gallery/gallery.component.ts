@@ -4,7 +4,7 @@ import {
   AuthService,
   FireStorageService,
   FirestoreService,
-  IImageGridItem,
+  ImageGridItem,
   ImageGridComponent,
   ImageGridItemUpload,
 } from '@wivipro/modules/shared/ui';
@@ -21,9 +21,9 @@ import { ActivatedRoute } from '@angular/router';
 export class GalleryComponent implements OnInit {
   loaded = false;
   gallerySubscription!: Subscription;
-  gallery$!: Observable<IImageGridItem[]>;
+  gallery$!: Observable<ImageGridItem[]>;
 
-  gallery: IImageGridItem[] = new Array<IImageGridItem>();
+  gallery: ImageGridItem[] = new Array<ImageGridItem>();
 
   constructor(
     public authService: AuthService,
@@ -34,7 +34,6 @@ export class GalleryComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.queryParamMap.pipe(take(1)).subscribe((data) => {
-      console.log(data);
       if (data.get('debug')) {
         this.mockGallery();
       } else {
@@ -44,31 +43,26 @@ export class GalleryComponent implements OnInit {
   }
 
   addImage = (item: ImageGridItemUpload): void => {
-    //handle uploading the file to firebase storage and saving the info to firestore
-
     this.firestorageService.upload(item.file).then((url) => {
-      // this.firestoreService.addDocument<IImageGridItem>('gallery', {
-      //   fileSmall: url,
-      //   fileLarge: url,
-      //   description: item.description,
-      // });
-      this.firestoreService.setDocument<IImageGridItem>('gallery', 'myid', {
-        fileSmall: url,
-        fileLarge: url,
-        description: item.description,
-      });
+      const gridItem = new ImageGridItem(item.description, url);
+      this.firestoreService.setDocument<ImageGridItem>(
+        'gallery',
+        gridItem.key,
+        gridItem
+      );
     });
   };
 
   private initGallery(): void {
     this.gallery$ =
-      this.firestoreService.getCollection<IImageGridItem>('gallery');
+      this.firestoreService.getCollection<ImageGridItem>('gallery');
   }
 
   private mockGallery() {
-    const mockArr = new Array<IImageGridItem>();
+    const mockArr = new Array<ImageGridItem>();
     for (let i = 0; i < 100; i++) {
       mockArr.push({
+        key: i.toString(),
         fileSmall: `https://picsum.photos/150?random=${i}`,
         fileLarge: `https://picsum.photos/500?random=${i}`,
         description:

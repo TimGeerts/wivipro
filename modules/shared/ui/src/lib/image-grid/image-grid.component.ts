@@ -7,7 +7,7 @@ import {
   OnInit,
   Output,
 } from '@angular/core';
-import { IImageGridItem } from '../types/image-grid-item';
+import { ImageGridItem } from '../types/image-grid-item';
 import { Observable, Subject, map, of, takeUntil } from 'rxjs';
 import { InfiniteScrolling } from './services/infinite-scrolling.service';
 import { ImageViewerComponent } from './image-viewer/image-viewer.component';
@@ -24,7 +24,7 @@ import { ImageGridItemUpload } from '../types/image-grid-item-upload';
   styleUrls: ['./image-grid.component.scss'],
 })
 export class ImageGridComponent implements OnInit, OnDestroy {
-  @Input() images$!: Observable<IImageGridItem[]>;
+  @Input() images$!: Observable<ImageGridItem[]>;
   @Input() manage = false;
 
   @Output() addImage: EventEmitter<ImageGridItemUpload> =
@@ -35,8 +35,8 @@ export class ImageGridComponent implements OnInit, OnDestroy {
   //   new EventEmitter<IGalleryImage>();
 
   private readonly unsubscribe$: Subject<void> = new Subject();
-  images: IImageGridItem[] = new Array<IImageGridItem>();
-  imgData: IImageGridItem[] = new Array<IImageGridItem>();
+  images: ImageGridItem[] = new Array<ImageGridItem>();
+  imgData: ImageGridItem[] = new Array<ImageGridItem>();
   startLimit = 0;
   endLimit = 10;
   modalOptions: NgbModalOptions = {
@@ -52,7 +52,7 @@ export class ImageGridComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.images$.pipe(takeUntil(this.unsubscribe$)).subscribe((images) => {
       this.images = images;
-      this.imgData = new Array<IImageGridItem>();
+      this.imgData = new Array<ImageGridItem>();
       this.loadGrid(this.startLimit, this.endLimit);
     });
 
@@ -78,7 +78,7 @@ export class ImageGridComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe({
         next: (r) => {
-          console.log(start, end, r);
+          // console.log(start, end, r);
           this.imgData = this.imgData.concat(r);
           const clear = setInterval(() => {
             const target = document.querySelector(`#gimg${end}`);
@@ -131,12 +131,12 @@ export class ImageGridComponent implements OnInit, OnDestroy {
       });
   }
 
-  edit(e: Event, img: IImageGridItem): void {
+  edit(e: Event, img: ImageGridItem): void {
     console.log('edit ', img);
     e.stopPropagation();
   }
 
-  delete(e: Event, img: IImageGridItem): void {
+  delete(e: Event, img: ImageGridItem): void {
     console.log('delete ', img);
     e.stopPropagation();
   }
