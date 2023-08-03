@@ -22,8 +22,8 @@ import { FirebaseError } from 'firebase/app';
 })
 export class LoginComponent {
   form: FormGroup = this.fb.group({
-    username: ['tim.geerts1@gmail.com', Validators.required],
-    password: ['Linneke1', Validators.required],
+    username: ['', Validators.required],
+    password: ['', Validators.required],
   });
 
   constructor(
