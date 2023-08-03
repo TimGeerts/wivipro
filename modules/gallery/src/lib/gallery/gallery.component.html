@@ -1,12 +1,27 @@
-<ng-container *ngIf="gallery$ | async as images">
-  <wivipro-image-grid
-    [images$]="gallery$"
-    [manage]="(authService.$loggedIn | async) ?? false"
-    (addImage)="addImage($event)"
-  ></wivipro-image-grid>
-</ng-container>
-
-<p>
-  Foto's komen er aan, we zijn nog volop aan het fotograferen om alle vernieuwde
-  artikelen te kunnen tonen!
-</p>
+<wivipro-horizontal-card cardTitle="Foto's">
+  <p>
+    Hieronder bieden we u graag een voorsmaakje van wat je allemaal bij ons kan
+    vinden; doopsuiker verpakkingen, pampertaarten, geschenkartikelen, stickers,
+    presentatiemateriaal,...
+    <br />
+    Noem maar op!
+  </p>
+  <p>
+    Veel van deze artikels zijn ook te vinden in onze
+    <a href="http://www.wivipro-webshop.be/" target="_blank">webshop</a>.
+  </p>
+  <p class="extra-info mb-5">
+    Zowel deze foto gallerij als onze webshop worden geregeld aangevuld met
+    nieuwe dingen dus kom geregeld een kijkje nemen!
+  </p>
+  <ng-container *ngIf="gallery$ | async as images">
+    <wivipro-image-grid
+      [images$]="gallery$"
+      [manage]="(authService.$loggedIn | async) ?? false"
+      [adding]="addingNewImage"
+      (addImage)="addImage($event)"
+      (editImage)="editImage($event)"
+      (deleteImage)="deleteImage($event)"
+    ></wivipro-image-grid>
+  </ng-container>
+</wivipro-horizontal-card>

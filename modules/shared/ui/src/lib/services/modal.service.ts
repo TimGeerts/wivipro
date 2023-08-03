@@ -7,6 +7,7 @@ import {
 } from '@ng-bootstrap/ng-bootstrap';
 import { from, Observable, of } from 'rxjs';
 import { catchError, map, take } from 'rxjs/operators';
+import { ConfirmDeleteModalComponent } from './modal-templates/confirm-delete.component';
 // import { ConfirmDeleteModalComponent } from './templates/confirm-delete.modal';
 // import { ConfirmResetModalComponent } from './templates/confirm-reset.modal';
 
@@ -32,12 +33,12 @@ export class ModalService {
 
   //TODO: add some generic dialogs that are used quite often (like a simple yes/no confirmation dialog, etc...)
 
-  // confirmDelete(message: string = ''): Observable<ModalResult<boolean>> {
-  //   return this.show<ConfirmDeleteModalComponent, boolean>(
-  //     ConfirmDeleteModalComponent,
-  //     { bodyText: message }
-  //   );
-  // }
+  confirmDelete(message = ''): Observable<ModalResult<boolean>> {
+    return this.show<ConfirmDeleteModalComponent, boolean>(
+      ConfirmDeleteModalComponent,
+      { bodyText: message }
+    );
+  }
 
   // confirmDeleteWithTemplate(
   //   template: TemplateRef<Element>

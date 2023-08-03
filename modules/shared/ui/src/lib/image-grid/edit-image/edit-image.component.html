@@ -1,0 +1,50 @@
+<div class="offcanvas offcanvas-end show">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title">Afbeelding wijzigen</h5>
+    <button
+      type="button"
+      class="btn-close no-focus"
+      aria-label="Close"
+      (click)="activeOffCanvas.dismiss()"
+    ></button>
+  </div>
+  <div class="offcanvas-body">
+    <div class="d-flex">
+      <div class="w-100">
+        <form class="signin-form" [formGroup]="form" (ngSubmit)="save()">
+          <div class="form-group mb-3">
+            <div class="input-group mb-3">
+              <textarea
+                class="form-control"
+                placeholder="Omschrijving"
+                formControlName="description"
+                rows="3"
+              ></textarea>
+            </div>
+          </div>
+          <div class="d-flex justify-content-around mb-5">
+            <div class="add-image-placeholder image-chosen">
+              <img [src]="item.fileLarge" />
+            </div>
+          </div>
+          <div class="form-group d-flex justify-content-between gap-4">
+            <button
+              type="button"
+              class="form-control btn btn-secondary"
+              (click)="activeOffCanvas.dismiss()"
+            >
+              Annuleren
+            </button>
+            <button
+              type="submit"
+              [disabled]="!form.valid"
+              class="form-control btn btn-primary rounded submit px-3"
+            >
+              Wijzigen
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

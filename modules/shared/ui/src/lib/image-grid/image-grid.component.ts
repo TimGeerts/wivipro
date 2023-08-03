@@ -15,6 +15,7 @@ import { NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { ModalService } from '../services/modal.service';
 import { AddImageComponent } from './add-image/add-image.component';
 import { ImageGridItemUpload } from '../types/image-grid-item-upload';
+import { EditImageComponent } from './edit-image/edit-image.component';
 
 @Component({
   selector: 'wivipro-image-grid',
@@ -26,21 +27,24 @@ import { ImageGridItemUpload } from '../types/image-grid-item-upload';
 export class ImageGridComponent implements OnInit, OnDestroy {
   @Input() images$!: Observable<ImageGridItem[]>;
   @Input() manage = false;
+  @Input() adding = false;
 
   @Output() addImage: EventEmitter<ImageGridItemUpload> =
     new EventEmitter<ImageGridItemUpload>();
-  // @Output() editImage: EventEmitter<IGalleryImage> =
-  //   new EventEmitter<IGalleryImage>();
-  // @Output() deleteImage: EventEmitter<IGalleryImage> =
-  //   new EventEmitter<IGalleryImage>();
+  @Output() editImage: EventEmitter<ImageGridItem> =
+    new EventEmitter<ImageGridItem>();
+  @Output() deleteImage: EventEmitter<ImageGridItem> =
+    new EventEmitter<ImageGridItem>();
 
   private readonly unsubscribe$: Subject<void> = new Subject();
   images: ImageGridItem[] = new Array<ImageGridItem>();
   imgData: ImageGridItem[] = new Array<ImageGridItem>();
   startLimit = 0;
   endLimit = 10;
+  addProgress = 0;
+  initialLoad = true;
   modalOptions: NgbModalOptions = {
-    size: 'lg',
+    size: 'xl',
     modalDialogClass: 'image-viewer',
   };
 
@@ -53,19 +57,19 @@ export class ImageGridComponent implements OnInit, OnDestroy {
     this.images$.pipe(takeUntil(this.unsubscribe$)).subscribe((images) => {
       this.images = images;
       this.imgData = new Array<ImageGridItem>();
-      this.loadGrid(this.startLimit, this.endLimit);
+      // this.loadGrid(this.startLimit, this.endLimit);
     });
 
-    this.scrollService
-      .getObservable()
-      .pipe(takeUntil(this.unsubscribe$))
-      .subscribe((s) => {
-        if (s) {
-          this.startLimit = this.startLimit + 10;
-          this.endLimit = this.endLimit + 10;
-          this.loadGrid(this.startLimit, this.endLimit);
-        }
-      });
+    // this.scrollService
+    //   .getObservable()
+    //   .pipe(takeUntil(this.unsubscribe$))
+    //   .subscribe((s) => {
+    //     if (s) {
+    //       this.startLimit = this.startLimit + 10;
+    //       this.endLimit = this.endLimit + 10;
+    //       this.loadGrid(this.startLimit, this.endLimit);
+    //     }
+    //   });
   }
 
   ngOnDestroy(): void {
@@ -73,24 +77,24 @@ export class ImageGridComponent implements OnInit, OnDestroy {
     this.unsubscribe$.complete();
   }
 
-  private loadGrid(start: number, end: number) {
-    of(this.images.slice(start, end))
-      .pipe(takeUntil(this.unsubscribe$))
-      .subscribe({
-        next: (r) => {
-          // console.log(start, end, r);
-          this.imgData = this.imgData.concat(r);
-          const clear = setInterval(() => {
-            const target = document.querySelector(`#gimg${end}`);
-            if (target) {
-              clearInterval(clear);
-              this.scrollService.setObserver().observe(target);
-            }
-          }, 100);
-        },
-        error: (e) => console.error(e),
-      });
-  }
+  // private loadGrid(start: number, end: number) {
+  //   of(this.images.slice(start, end))
+  //     .pipe(takeUntil(this.unsubscribe$))
+  //     .subscribe({
+  //       next: (r) => {
+  //         // console.log(start, end, r);
+  //         this.imgData = this.imgData.concat(r);
+  //         const clear = setInterval(() => {
+  //           const target = document.querySelector(`#gimg${end}`);
+  //           if (target) {
+  //             clearInterval(clear);
+  //             this.scrollService.setObserver().observe(target);
+  //           }
+  //         }, 100);
+  //       },
+  //       error: (e) => console.error(e),
+  //     });
+  // }
 
   // getImages(start: number, end: number) {
   //   this.mockImgService(start, end)
@@ -122,30 +126,45 @@ export class ImageGridComponent implements OnInit, OnDestroy {
 
   // image CRUD functions
   add(): void {
-    console.log('add');
     this.modalService
       .showOffCanvas<AddImageComponent, ImageGridItemUpload>(AddImageComponent)
       .pipe(map((r) => r.Data))
       .subscribe((r) => {
-        this.addImage.emit(r);
+        if (r && r.description && r.file) {
+          this.initialLoad = false;
+          this.addImage.emit(r);
+          this.fakeProgress();
+        }
       });
   }
 
   edit(e: Event, img: ImageGridItem): void {
-    console.log('edit ', img);
+    this.modalService
+      .showOffCanvas<EditImageComponent, ImageGridItem>(EditImageComponent, {
+        item: img,
+      })
+      .pipe(map((r) => r.Data))
+      .subscribe((r) => {
+        this.editImage.emit(r);
+      });
     e.stopPropagation();
   }
 
   delete(e: Event, img: ImageGridItem): void {
-    console.log('delete ', img);
+    this.modalService
+      .confirmDelete('Zeker dat je deze afbeelding wil verwijderen?')
+      .subscribe((r) => {
+        if (r.Success) {
+          this.initialLoad = true;
+          this.deleteImage.emit(img);
+        }
+      });
     e.stopPropagation();
   }
 
   show(index: number): void {
-    console.log('show ', index);
-
     const config = {
-      images: this.imgData,
+      images: this.images,
       index,
     };
 
@@ -154,5 +173,16 @@ export class ImageGridComponent implements OnInit, OnDestroy {
       config,
       this.modalOptions
     );
+  }
+
+  private fakeProgress(): void {
+    this.addProgress = 0;
+    const progInterval = setInterval(() => {
+      this.addProgress++;
+      console.log('interval');
+    }, 50);
+    setTimeout(() => {
+      clearInterval(progInterval);
+    }, 5000);
   }
 }

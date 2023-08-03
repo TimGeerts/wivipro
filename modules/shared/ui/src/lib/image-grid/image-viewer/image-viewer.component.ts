@@ -9,6 +9,7 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './image-viewer.component.html',
+  styleUrls: ['./image-viewer.component.scss'],
 })
 export class ImageViewerComponent implements OnInit {
   images!: ImageGridItem[];
@@ -49,6 +50,8 @@ export class ImageViewerComponent implements OnInit {
 
   private setActiveImage(): void {
     this.currentImage = undefined;
-    this._img$.next(this.images[this.index]);
+    setTimeout(() => {
+      this._img$.next(this.images[this.index]);
+    }, 250);
   }
 }

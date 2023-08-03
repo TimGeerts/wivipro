@@ -12,17 +12,47 @@
     </div>
   </ng-container>
 </div> -->
-
 <div class="image-grid" [ngClass]="{ manage: manage }">
-  <div *ngIf="manage" class="gallery-image addnew" (click)="add()">
+  <div
+    *ngIf="manage"
+    class="gallery-image tile-with-icon addnew"
+    (click)="add()"
+  >
     <i class="fas fa-plus"></i>
   </div>
+  <div *ngIf="adding" class="gallery-image tile-with-icon loading">
+    <i class="fas fa-circle-notch fa-spin"></i>
+    <div class="progress">
+      <div
+        class="progress-bar progress-bar-striped progress-bar-animated"
+        role="progressbar"
+        style="width: 25%"
+        [ngStyle]="{ width: addProgress + '%' }"
+      ></div>
+    </div>
+  </div>
   <ng-container *ngFor="let image of images$ | async; let i = index">
-    <div class="gallery-image" id="gimg{{ i + 1 }}" (click)="show(i)">
+    <div
+      [ngClass]="{ added: i === 0 && !adding && !initialLoad }"
+      class="gallery-image"
+      id="gimg{{ i + 1 }}"
+      (click)="show(i)"
+    >
       <img src="{{ image.fileSmall }}" />
-      <div *ngIf="manage" class="actions w-100 d-flex justify-content-between align-items-center">
-        <i class="fas fa-pen my-2 mx-4" (click)="edit($event, image)" title="Editeren"></i>
-        <i class="fas fa-trash my-2 mx-4" (click)="delete($event, image)" title="Verwijderen"></i>
+      <div
+        *ngIf="manage"
+        class="actions w-100 d-flex justify-content-between align-items-center"
+      >
+        <i
+          class="fas fa-pen my-2 mx-4"
+          (click)="edit($event, image)"
+          title="Editeren"
+        ></i>
+        <i
+          class="fas fa-trash my-2 mx-4"
+          (click)="delete($event, image)"
+          title="Verwijderen"
+        ></i>
       </div>
     </div>
   </ng-container>

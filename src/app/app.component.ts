@@ -45,7 +45,7 @@ export class AppComponent implements OnInit {
   private initMenu(): void {
     this.menuItems = [
       {
-        label: "Foto's (coming soon)",
+        label: "Foto's",
         routerLink: '/gallery',
       },
 
