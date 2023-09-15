@@ -11,17 +11,12 @@
     <a href="http://www.wivipro-webshop.be/" target="_blank">webshop</a>.
   </p>
   <p class="extra-info mb-5">
-    Zowel deze foto gallerij als onze webshop worden geregeld aangevuld met
+    Zowel deze foto galerij als onze webshop worden geregeld aangevuld met
     nieuwe dingen dus kom geregeld een kijkje nemen!
   </p>
   <ng-container *ngIf="gallery$ | async as images">
-    <wivipro-image-grid
-      [images$]="gallery$"
-      [manage]="(authService.$loggedIn | async) ?? false"
-      [adding]="addingNewImage"
-      (addImage)="addImage($event)"
-      (editImage)="editImage($event)"
-      (deleteImage)="deleteImage($event)"
-    ></wivipro-image-grid>
+    <wivipro-image-grid [images$]="gallery$" [manage]="(authService.$loggedIn | async) ?? false"
+      [adding]="addingNewImage" (addImage)="addImage($event)" (editImage)="editImage($event)"
+      (deleteImage)="deleteImage($event)"></wivipro-image-grid>
   </ng-container>
 </wivipro-horizontal-card>
