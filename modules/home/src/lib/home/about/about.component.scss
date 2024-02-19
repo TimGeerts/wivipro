@@ -2,3 +2,8 @@ i {
   color: var(--bs-link-color);
   font-weight: 900;
 }
+.notification {
+  border: 2px solid var(--bs-primary);
+  padding: 1rem;
+  font-weight: bold;
+}
