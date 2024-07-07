@@ -7,17 +7,27 @@
   <div class="nav container d-flex justify-content-between px-0">
     <wivipro-horizontal-menu class="d-none d-md-block" [menuItems]="menuItems">
     </wivipro-horizontal-menu>
-    <wivipro-horizontal-menu *ngIf="(authService.$loggedIn | async) === false" class="d-none d-md-block" [right]="true"
-      [menuItems]="menuItemsRight">
+    <wivipro-horizontal-menu
+      *ngIf="(authService.$loggedIn | async) === false"
+      class="d-none d-md-block"
+      [right]="true"
+      [menuItems]="menuItemsRight"
+    >
     </wivipro-horizontal-menu>
 
-    <div *ngIf="authService.$loggedIn | async" class="d-flex align-items-center">
+    <div
+      *ngIf="authService.$loggedIn | async"
+      class="d-flex align-items-center"
+    >
       <div>
-        <span>Welkom {{(authService.$currentUser | async)?.displayName}} (</span>
-        <a href="#" title="Afmelden" class="links" (click)="signOut()">afmelden</a>
+        <span
+          >Welkom {{ (authService.$currentUser | async)?.displayName }} (</span
+        >
+        <a href="#" title="Afmelden" class="links" (click)="signOut()"
+          >afmelden</a
+        >
         <span>)</span>
       </div>
-
     </div>
   </div>
   <div class="header">
@@ -52,7 +62,8 @@
             <br />
             Tel: +32 (0)3 665 26 48<br />
             GSM: +32 (0)474 222 085<br />
-            Email: <a href="mailto:wivipro@gmail.com">wivipro@gmail.com</a><br />
+            Email: <a href="mailto:wivipro@gmail.com">wivipro@gmail.com</a
+            ><br />
           </address>
         </div>
         <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
@@ -60,8 +71,11 @@
             <strong>Legal</strong><br /><br />
             BTW: BE 0812 026 788<br />
             ING: BE86 6528 3312 0150<br />
-            <a href="https://www.dropbox.com/s/j3czcyok2p3hwto/Algemene%20Verkoopsvoorwaarden.pdf?dl=0"
-              target="_blank">Verkoopsvoorwaarden</a><br />
+            <a
+              href="https://www.dropbox.com/s/j3czcyok2p3hwto/Algemene%20Verkoopsvoorwaarden.pdf?dl=0"
+              target="_blank"
+              >Verkoopsvoorwaarden</a
+            ><br />
           </address>
         </div>
         <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
@@ -73,9 +87,16 @@
                 <td>gesloten</td>
               </tr>
               <tr>
-                <td>dinsdag t.e.m. zaterdag:</td>
-                <td>op <a href="https://calendly.com/wivipro/afspraak" target="_blank"
-                    title="Afspraak maken">afspraak</a></td>
+                <td>dinsdag t.e.m. vrijdag:</td>
+                <td>
+                  op
+                  <a
+                    href="https://calendly.com/wivipro/afspraak"
+                    target="_blank"
+                    title="Afspraak maken"
+                    >afspraak</a
+                  >
+                </td>
               </tr>
               <tr>
                 <td>zondag:</td>
@@ -89,10 +110,18 @@
             <strong>Social</strong>
             <br /><br />
             <div class="social d-flex">
-              <a href="https://www.facebook.com/wivipro/" target="_blank" title="Facebook">
+              <a
+                href="https://www.facebook.com/wivipro/"
+                target="_blank"
+                title="Facebook"
+              >
                 <i class="fab fa-facebook-square"></i>
               </a>
-              <a href="https://www.instagram.com/wiviprokapellen/" target="_blank" title="Instagram">
+              <a
+                href="https://www.instagram.com/wiviprokapellen/"
+                target="_blank"
+                title="Instagram"
+              >
                 <i class="fab fa-instagram-square"></i>
               </a>
               <!-- <a href="https://www.pinterest.com/wivipro/" target="_blank" title="Pinterest">
