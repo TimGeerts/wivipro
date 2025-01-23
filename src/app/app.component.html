@@ -4,7 +4,7 @@
   [fixed]="true"
 ></ngx-loading-bar> -->
 <div class="wrapper min-vh-100">
-  <div class="nav container d-flex justify-content-between px-0">
+  <div class="nav container d-flex justify-content-between px-0 d-none">
     <wivipro-horizontal-menu class="d-none d-md-block" [menuItems]="menuItems">
     </wivipro-horizontal-menu>
     <wivipro-horizontal-menu
@@ -47,7 +47,7 @@
   <div class="content container">
     <router-outlet></router-outlet>
   </div>
-  <div class="footer small">
+  <div class="footer small d-none">
     <div class="container">
       <div class="row">
         <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
